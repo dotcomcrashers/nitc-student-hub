@@ -1,20 +1,32 @@
-const path = require('path');
-
 const express = require('express');
 
 const app = express();
 
-const port = 3000;
+const port = 3001;
 
 app.use(express.static('public'));
+app.use(express.json())
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public', 'index.html'));
-    //req.url('/index.html');
-    //next();
-});
+const db = require('./models')
 
+// app.get('/', (req, res, next) => {
+//     req.url('/index.html');
+//     next();
+// });
 
-app.listen(port, () => {
-    console.log(`NITC Student Hub is running on port ${port}`);
+// Routers
+
+const postRouter = require('./routes/Posts');
+app.use("/posts", postRouter);
+
+const LastKnownRouter = require('./routes/LastKnown');
+app.use("/lastKnown", LastKnownRouter);
+
+const PriceRouter = require('./routes/Price');
+app.use("/price", PriceRouter);
+
+db.sequelize.sync().then(() => {
+    app.listen(port, () => {
+        console.log(`NITC Student Hub is running on port ${port}`);
+    });
 });
