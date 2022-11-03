@@ -21,6 +21,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+
+        image: {
+            type: DataTypes.BLOB,
+            allowNull: true,
+        },
+
+        author_email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        }
     });
 
     Posts.associate = (models) => {
