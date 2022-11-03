@@ -7,14 +7,14 @@ function Login() {
       <header className="Login-header">
         <img src={logo} className="Login-logo" alt="logo" />
         <p>
-          This is the <code>Test Login</code>
+          This is <code>Login</code>
         </p>
         <a
           className="Login-link"
-          href="/"
+          href="/home"
           rel="noopener noreferrer"
         >
-          Learn React
+          Goto Home Page
         </a>
       </header>
     </div>
