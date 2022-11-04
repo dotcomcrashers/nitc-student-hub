@@ -1,7 +1,7 @@
 FROM node AS builder
 WORKDIR /frontend
 COPY ./frontend ./
-RUN npm install
+RUN npm install --force
 RUN npm run build
 
 FROM node as runner
