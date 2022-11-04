@@ -2,9 +2,9 @@ import {Container, Nav, Navbar} from 'react-bootstrap';
 
 function Navi({isAuth}) {
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
-	<Navbar.Brand href="/home">NITC Students Hub</Navbar.Brand>
+    <Navbar fixed="top" variant="dark" expand="lg" style={{background: "#B5D2E7"}}>
+      <Container fluid>
+	<Navbar.Brand href="/home" style={{fontfamily: "roboto"}}>NITC Student Hub</Navbar.Brand>
         {isAuth
          ? <Nav className="me-auto">
              <Nav.Link href="/home">Home</Nav.Link>
