@@ -23,10 +23,6 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    volumes:
-      - ./backend:/usr/app/backend
-      - ./frontend:/usr/app/frontend
-      - ./frontend/build:/usr/app/backend/public
     restart: on-failure
     networks:
       - app-net
