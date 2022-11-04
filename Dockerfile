@@ -1,9 +1,13 @@
-FROM node
-WORKDIR /usr/app/frontend
+FROM node AS builder
+WORKDIR /frontend
+COPY ./frontend ./
 RUN npm install
 RUN npm run build
 
-WORKDIR /usr/app/backend
+FROM node as runner
+WORKDIR /backend
+COPY ./backend .
+COPY --from=builder /frontend/build public
 RUN npm install
 ENV NODE_ENV=development
 EXPOSE 3000
