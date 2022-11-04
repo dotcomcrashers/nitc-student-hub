@@ -16,19 +16,23 @@ import {
   Outlet
 } from "react-router-dom";
 
+import { CookiesProvider } from 'react-cookie';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route element={<NoAuthLayout />}>
+    <CookiesProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<NoAuthLayout />}>
           <Route exact path="/" element={<Login />} />
         </Route>
         <Route element={<AuthLayout />}>
           <Route exact path="/home" element={<Home />} />
         </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </CookiesProvider>
   </React.StrictMode>
 );
 

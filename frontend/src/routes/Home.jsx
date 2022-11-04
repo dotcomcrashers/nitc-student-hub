@@ -1,24 +1,34 @@
 import logo from './logo.png';
 import './Home.css';
+import { useCookies } from 'react-cookie';
+import { Navigate } from 'react-router-dom';
 
-function App() {
+function Home() {
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+
+  
+  if (!cookies.email) {
+    return (
+      <Navigate to="/"/>
+    );
+  }
+  
   return (
     <div className="Home">
       <header className="Home-header">
-        <img src={logo} className="Home-logo" alt="logo" />
+        <img src={cookies ? cookies.pic: logo} className="Home-logo" alt="logo" />
         <p>
           This is <code>Home</code>
         </p>
         <a
           className="Home-link"
-          href="/"
           rel="noopener noreferrer"
         >
-          Goto Login Page
+          {cookies.name}
         </a>
       </header>
     </div>
   );
 }
 
-export default App;
+export default Home;
