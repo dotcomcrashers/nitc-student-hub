@@ -12,14 +12,17 @@ const db = require('./models')
 
 // Routers
 
-const postRouter = require('./routes/Posts');
-app.use("/posts", postRouter);
+// const postRouter = require('./routes/Posts');
+// app.use("/posts", postRouter);
 
-const LastKnownRouter = require('./routes/LastKnown');
-app.use("/lastKnown", LastKnownRouter);
+// const LastKnownRouter = require('./routes/LastKnown');
+// app.use("/lastKnown", LastKnownRouter);
 
-const PriceRouter = require('./routes/Price');
-app.use("/price", PriceRouter);
+// const PriceRouter = require('./routes/Price');
+// app.use("/price", PriceRouter);
+
+const apiRouter = require('./routes/api');
+app.use("/api", apiRouter)
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
