@@ -21,7 +21,7 @@ const db = require('./models')
 // const PriceRouter = require('./routes/Price');
 // app.use("/price", PriceRouter);
 
-const apiRouter = require('./routes/api');
+const apiRouter = require(path.join(__dirname, 'routes/api'));
 app.use("/api", apiRouter)
 
 app.get('*', (req, res) => {
