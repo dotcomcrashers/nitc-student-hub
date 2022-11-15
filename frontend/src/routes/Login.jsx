@@ -39,7 +39,7 @@ function Login() {
     setCookie('name', profile.name, { path: '/'});
     setCookie('email', profile.email, { path: '/'});
     setCookie('pic', profile.imageUrl, {path: '/'});
-    navigate('/home');
+    navigate('/lost-found/home');
   };
 
   const logOut = () => {
