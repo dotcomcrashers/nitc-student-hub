@@ -48,7 +48,7 @@ function Login() {
 
   if(cookies.email) {
     return (
-      <Navigate to="/home"/>
+      <Navigate to="/lost-found/home"/>
     );
   }
   return (
