@@ -11,21 +11,21 @@ router.post('/', async (req, res) => {
 });
 
 // Get All Lost and Found Posts
-router.post('/lost_found/home', async (req, res) => {
+router.post('/lost-found/home', async (req, res) => {
     const list = await Posts.findAll({where: {type: [0,1]}});
     res.json(list);
-})
+});
 
 // Get all personal posts
-router.post('/lost_found/personal', async (req, res) => {
+router.post('/lost-found/personal', async (req, res) => {
     const body  = req.body;
     const list = await Posts.findAll({where: {author_email: body['author_email'], type: [0,1]}});
     res.json(list);
     
-})
+});
 
 // Get Detailed information on posts
-router.post('/lost_found/view', async(req, res) => {
+router.post('/lost-found/view', async(req, res) => {
     const body = req.body;
     const list = await Posts.findAll({where: {id: body['id']}});
     const lastKnown = await LastKnown.findAll({where: {id: body['id']}});
@@ -38,10 +38,10 @@ router.post('/lost_found/view', async(req, res) => {
     }
     
     res.json(post);
-})
+});
 
 // Create Lost-Found Post
-router.post('/lost_found/create', async(req, res) => {
+router.post('/lost-found/create', async(req, res) => {
     const body = req.body;
 
     const post = {};
@@ -67,14 +67,14 @@ router.post('/lost_found/create', async(req, res) => {
     catch(err){
         console.log(err);
     }
-})
+});
 
 
 // Get All MarketPlace Posts 
 router.post('/marketplace/home', async (req, res) => {
     const list = await Posts.findAll({where: {type: 2}});
     res.json(list);
-})
+});
 
 // Get all personal Marketplace posts
 router.post('/marketplace/personal', async (req, res) => {
@@ -82,7 +82,7 @@ router.post('/marketplace/personal', async (req, res) => {
     const list = await Posts.findAll({where: {author_email: body['author_email'], type: 2}});
     res.json(list);
     
-})
+});
 
 // Get Detailed information on market place posts
 router.post('/marketplace/view', async(req, res) => {
@@ -104,7 +104,7 @@ router.post('/marketplace/view', async(req, res) => {
     catch(err){
         console.log(err);
     }
-})
+});
 
 
 // Create MarketPlace  Post
@@ -133,6 +133,6 @@ router.post('/marketplace/create', async(req, res) => {
     catch(err){
         console.log(err);
     }
-})
+});
 
-module.exports = router
+module.exports = router;
