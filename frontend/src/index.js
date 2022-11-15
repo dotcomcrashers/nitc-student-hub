@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import LostFoundHome from './routes/lost-found/LostFoundHome';
+import LostFoundCreate from './routes/lost-found/LostFoundCreate';
 import Login from './routes/Login';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -27,6 +28,9 @@ root.render(
           </Route>
         <Route element={<AuthLayout />}>
           <Route exact path="/lost-found/home" element={<LostFoundHome />} />
+        </Route>
+        <Route element={<AuthLayout />}>
+          <Route exact path="/lost-found/create" element={<LostFoundCreate />} />
         </Route>
         </Routes>
       </BrowserRouter>
