@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row } from 'react-bootstrap';
+import { Button, Card, Col, Row, Image } from 'react-bootstrap';
 
 function PostListItem({author, title, description, image, link}) {
   return (
@@ -8,7 +8,7 @@ function PostListItem({author, title, description, image, link}) {
         <Card.Body className="p-0">
           <Row>
             <Col xs={1}>
-              <img src={image} style={{height: "9rem", width: "9rem"}}/>
+              <Image src={image} style={{height: "9rem", width: "9rem"}}/>
             </Col>
             <Col className="p-3">
               <Card.Title><Card.Link href={link} className="stretched-link" style={{textDecoration: "none", color: "inherit", font: "inherit"}}>{title}</Card.Link></Card.Title>
