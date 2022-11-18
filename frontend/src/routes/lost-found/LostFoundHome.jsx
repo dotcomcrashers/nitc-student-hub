@@ -24,6 +24,7 @@ function LostFoundHome() {
       .then((res) => res.json())
       .then((json) => {
         setPosts(json);
+        console.log(json);
         setIsFetching(false);
       });
   }, []);
@@ -36,10 +37,10 @@ function LostFoundHome() {
   
   return (
     <div className="Home" style={{marginTop: "4rem"}}>
-      {isFetching ? posts.map( post =>
+      {isFetching ? <></>
+       : posts.map( post =>
         <PostListItem author={post["author_email"]} title={post["title"]} description={post["description"]} image={cookies.pic} link={"/post?id=" + post["id"]}/>
-      )
-          :<></>}
+      )}
       <Button variant="primary" style={{position: "fixed", right:"3rem", bottom: "3rem", width:"5rem", height: "5rem", fontSize: "2rem"}} onClick={()=> {navigate('/lost-found/create');}}>+</Button>
     </div>
   );
