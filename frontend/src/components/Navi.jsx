@@ -20,9 +20,9 @@ function Navi({isAuth}) {
         {isAuth
          ? <>
              <Nav className="me-auto">
-               <Nav.Link href="/home">Home</Nav.Link>
-               <Nav.Link href="/personal">Personal</Nav.Link>
-               <Nav.Link href="/notifications">Notification</Nav.Link>  
+               <Nav.Link href="/lost-found/home">Home</Nav.Link>
+               <Nav.Link href="/lost-found/personal">Personal</Nav.Link>
+               <Nav.Link href="/lost-found/notifications">Notification</Nav.Link>  
              </Nav>
              <Form className="d-flex"> 
                <Button className="me-2" variant="danger" onClick={logOut}>Logout</Button>
