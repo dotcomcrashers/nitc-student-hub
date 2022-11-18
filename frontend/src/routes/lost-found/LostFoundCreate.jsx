@@ -14,6 +14,7 @@ function LostFoundCreate() {
   let navigate = useNavigate();
 
   function addPost() {
+    console.log(JSON.stringify({"type": 0, "title": title, "description": description, "author_email": cookies.email, "location": location, "time": time}));
     fetch(
       "http://localhost:3000/api/lost-found/create",
       {
@@ -22,7 +23,11 @@ function LostFoundCreate() {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({type: 0, title: title, description: description, author_email: cookies.email, time: time})
+        body: JSON.stringify({"type": 0, "title": title, "description": description, "author_email": cookies.email, "location": location, "time": time})
+      })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
       });
   }
 
@@ -40,21 +45,21 @@ function LostFoundCreate() {
         <Card.Body className="p-3 justify-content-center text-center">
           <Form>
             <Form.Group className="mb-3" controlId="title">
-              <Form.Control type="text" placeholder="Title" onChange={setTitle}/>
+              <Form.Control type="text" placeholder="Title" onChange={e => setTitle(e.target.value)}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="description">
-              <Form.Control as="textarea" rows={8} placeholder="Description" onChange={setDescription}/>
+              <Form.Control as="textarea" rows={8} placeholder="Description" onChange={e => setDescription(e.target.value)}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="time">
-              <Form.Control type="datetime-local" onChange={setTime}/>
+              <Form.Control type="datetime-local" onChange={e => setTime(e.target.value)}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="location">
-              <Form.Control as="textarea" rows={3} placeholder="Last seen place" onChange={setLocation}/>
+              <Form.Control as="textarea" rows={3} placeholder="Last seen place" onChange={e => setLocation(e.target.value)}/>
             </Form.Group>
-            <Button className="my-2 w-100 p-1" variant="success" type="submit" onClick={addPost}>
+            <Button className="my-2 w-100 p-1" variant="success" onClick={addPost}>
               Post
             </Button>
-            <Button className="my-2 w-100 p-1" variant="danger" type="submit" onClick={() => {navigate("/lost-found/home");}}>
+            <Button className="my-2 w-100 p-1" variant="danger" onClick={() => {navigate("/lost-found/home");}}>
               Cancel
             </Button>
           </Form>
