@@ -7,6 +7,7 @@ import { useCookies } from 'react-cookie';
 
 function LostFoundCreate() {
   const [cookies, setCookie] = useCookies(['user']);
+  const [postType, setPostType] = useState("0"); 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [time, setTime] = useState("");
@@ -17,7 +18,7 @@ function LostFoundCreate() {
   let formRef = useRef();
 
   function addPost() {
-    console.log(JSON.stringify({"type": 0, "title": title, "description": description, "author_email": cookies.email, "location": location, "time": time}));
+    console.log(JSON.stringify({"type": postType, "title": title, "description": description, "author_email": cookies.email, "location": location, "time": time}));
     const formElement = formRef.current;
     if (formElement.checkValidity() === false) {
       formElement.reportValidity();
@@ -34,8 +35,7 @@ function LostFoundCreate() {
         body: JSON.stringify({"type": 0, "title": title, "description": description, "author_email": cookies.email, "location": location, "time": time, "image": image})
       })
       .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
+      .then((_) => {
         navigate("/lost-found/home");
       })
       .catch((_) => {
@@ -59,10 +59,9 @@ function LostFoundCreate() {
     getBase64Image(selectedFile)
       .then( result => {
         setImage(result);
-        console.log(result);
       })
-      .catch(e => {
-        console.log(e);
+      .catch((_) => {
+        setShowToast(true);
       });
   }
 
@@ -85,7 +84,7 @@ function LostFoundCreate() {
             <strong className="me-auto">Oops!</strong>
             <small>now</small>
           </Toast.Header>
-          <Toast.Body>Could not create the post! Please try again later!</Toast.Body>
+          <Toast.Body className="text-white">Could not create the post! Please try again later!</Toast.Body>
       </Toast>
       </ToastContainer>
       
@@ -94,6 +93,13 @@ function LostFoundCreate() {
         <Card.Title className="my-3 text-center" style={{fontSize: "2rem"}}>Create Lost and Found Post</Card.Title>
         <Card.Body className="p-3 justify-content-center text-center">
           <Form ref={formRef} className="create-form">
+            <Form.Group className="mb-3" controlId="title">
+              <Form.Select aria-label="Select Lost or Found" onChange={e => setPostType(e.target.value)} required>
+                <option value="">Select Lost or Found</option>
+                <option value="0">Lost</option>
+                <option value="1">Found</option>
+              </Form.Select>
+            </Form.Group>
             <Form.Group className="mb-3" controlId="title">
               <Form.Control type="text" placeholder="Title" onChange={e => setTitle(e.target.value)} required/>
             </Form.Group>

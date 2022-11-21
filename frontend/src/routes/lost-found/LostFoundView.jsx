@@ -71,7 +71,7 @@ function LostFoundView() {
   function getFormattedTime(date) {
     let utcDate = new Date(date);
     let localeDate = utcDate.toLocaleDateString();
-    let localeTime = utcDate.toLocaleTimeString();
+    let localeTime = utcDate.toLocaleTimeString("en-US", {hour: "2-digit", minute: "2-digit" , timeZone:"UTC"});
     return localeDate + " " + localeTime;
   }
 
@@ -88,7 +88,7 @@ function LostFoundView() {
             <strong className="me-auto">Oops!</strong>
             <small>now</small>
           </Toast.Header>
-          <Toast.Body>Could not view the post! Please try again later!</Toast.Body>
+          <Toast.Body className="text-white">Could not view the post! Please try again later!</Toast.Body>
       </Toast>
       </ToastContainer>
       
@@ -103,6 +103,7 @@ function LostFoundView() {
              <Card.Header>{post["author_email"]}</Card.Header>
              <Card.Img variant="top" src={post["image"]} style={{height: "30rem", objectFit: "contain"}}/>
              <Card.Title className="my-3 text-center" style={{fontSize: "2rem"}}>{post["title"]}</Card.Title>
+             <Card.Subtitle className="mb-2 text-muted">{post["type"] == 0? "Lost" : "Found"}</Card.Subtitle>
              <Card.Body className="p-3 justify-content-center text-center">
                <Card.Text>{post["description"]}</Card.Text>
              </Card.Body>
