@@ -95,9 +95,7 @@ function LostFoundView() {
       <Card style={{ width: "50rem"}} className="row">
         {isFetching || Object.keys(post).length === 0?
          <>
-           <Card.Body>
-             <Card.Title style={{marginTop: "20rem", marginBottom: "20rem"}}>Loading...</Card.Title>
-           </Card.Body>
+           <Card.Title style={{marginTop: "20rem", marginBottom: "20rem"}}>Loading...</Card.Title>
          </>
          : <>
              <Card.Header>{post["author_email"]}</Card.Header>
