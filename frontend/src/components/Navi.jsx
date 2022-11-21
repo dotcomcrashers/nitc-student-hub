@@ -1,11 +1,12 @@
 import { Container, Nav, Navbar, Form, Button } from 'react-bootstrap';
 import { useCookies } from 'react-cookie';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
 
 
 function Navi({isAuth}) {
-  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  const [,, removeCookie ] = useCookies(['user']);
   const navigate = useNavigate();
+  
   const logOut = () => {
     removeCookie('name', { path: '/' });
     removeCookie('email', { path: '/' });
@@ -14,11 +15,12 @@ function Navi({isAuth}) {
   };
 
   return (
-    <Navbar fixed="top" variant="dark" expand="lg" style={{background: "#B5D2E7"}}>
-      <Container fluid>
-	<Navbar.Brand href="/" style={{fontfamily: "roboto"}}>NITC Student Hub</Navbar.Brand>
-        {isAuth
-         ? <>
+    <>
+      <Navbar fixed="top" variant="dark" expand="lg" style={{background: "#B5D2E7"}}>
+        <Container fluid>
+	  <Navbar.Brand href="/" style={{fontfamily: "roboto"}}>NITC Student Hub</Navbar.Brand>
+          {isAuth?
+           <>
              <Nav className="me-auto">
                <Nav.Link href="/lost-found/home">Home</Nav.Link>
                <Nav.Link href="/lost-found/personal">Personal</Nav.Link>
@@ -27,11 +29,13 @@ function Navi({isAuth}) {
              <Form className="d-flex"> 
                <Button className="me-2" variant="danger" onClick={logOut}>Logout</Button>
              </Form>
-         </>
-         : <></>
-        }
-      </Container>
-    </Navbar>
+           </>
+           : <></>
+          }
+        </Container>
+      </Navbar>
+      <Outlet />
+    </>
   );
 }
 
