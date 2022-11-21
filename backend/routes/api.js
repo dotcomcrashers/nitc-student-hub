@@ -69,6 +69,31 @@ router.post('/lost-found/create', async(req, res) => {
   }
 });
 
+// Delete Lost-Found Post
+router.post('/lost-found/delete', async(req, res) => {
+  const body = req.body;
+
+  const list = await Posts.findAll({where: {id: body['id']}});
+
+  const post = JSON.parse(JSON.stringify(list))[0];
+
+  if (post["author_email"] !== body["author_email"]) {
+    res.status(401).send("User can only delete their own posts!");
+  }
+
+  try{
+
+    const ret = await Posts.destroy({
+      where: {id: post["id"]}
+    });
+    
+    res.json(post);
+  }
+  catch(err){
+    console.log(err);
+  }
+});
+
 
 // Get All MarketPlace Posts 
 router.post('/marketplace/home', async (req, res) => {
