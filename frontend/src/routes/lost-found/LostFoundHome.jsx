@@ -39,7 +39,7 @@ function LostFoundHome() {
     <div className="Home" style={{marginTop: "4rem"}}>
       {isFetching ? <></>
        : posts.map( post =>
-         <PostListItem author={post["author_email"]} title={post["title"]} description={post["description"]} image={post["image"]} link={"/lost-found/view?id=" + post["id"]}/>
+         <PostListItem author={post["author_email"]} title={post["title"]} subtitle={post["type"] == 0? "Lost" : "Found"} description={post["description"]} image={post["image"]} link={"/lost-found/view?id=" + post["id"]}/>
       )}
       <Button variant="primary" style={{position: "fixed", right:"3rem", bottom: "3rem", width:"5rem", height: "5rem", fontSize: "2rem"}} onClick={()=> {navigate('/lost-found/create');}}>+</Button>
     </div>
