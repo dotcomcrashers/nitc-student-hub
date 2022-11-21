@@ -6,6 +6,7 @@ import LostFoundHome from './routes/lost-found/LostFoundHome';
 import LostFoundCreate from './routes/lost-found/LostFoundCreate';
 import LostFoundView from './routes/lost-found/LostFoundView';
 import LostFoundPersonal from './routes/lost-found/LostFoundPersonal';
+import LostFoundNotifications from './routes/lost-found/LostFoundNotifications';
 import Login from './routes/Login';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -40,6 +41,9 @@ root.render(
           </Route>
           <Route element={<AuthLayout />}>
             <Route path="/lost-found/personal" element={<LostFoundPersonal />} />
+          </Route>
+          <Route element={<AuthLayout />}>
+            <Route path="/lost-found/notifications" element={<LostFoundNotifications />} />
           </Route>
           <Route element={<AuthLayout />}>
             <Route path="/lost-found"element={<Navigate to="/lost-found/home"/>}/>
