@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Navigate } from 'react-router-dom';
 import './index.css';
 import LostFoundHome from './routes/lost-found/LostFoundHome';
 import LostFoundCreate from './routes/lost-found/LostFoundCreate';
 import LostFoundView from './routes/lost-found/LostFoundView';
+import LostFoundPersonal from './routes/lost-found/LostFoundPersonal';
 import Login from './routes/Login';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -35,6 +37,12 @@ root.render(
           </Route>
           <Route element={<AuthLayout />}>
             <Route path="/lost-found/view" element={<LostFoundView />} />
+          </Route>
+          <Route element={<AuthLayout />}>
+            <Route path="/lost-found/personal" element={<LostFoundPersonal />} />
+          </Route>
+          <Route element={<AuthLayout />}>
+            <Route path="/lost-found"element={<Navigate to="/lost-found/home"/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
