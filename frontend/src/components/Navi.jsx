@@ -16,7 +16,7 @@ function Navi({isAuth}) {
   return (
     <Navbar fixed="top" variant="dark" expand="lg" style={{background: "#B5D2E7"}}>
       <Container fluid>
-	<Navbar.Brand href="/home" style={{fontfamily: "roboto"}}>NITC Student Hub</Navbar.Brand>
+	<Navbar.Brand href="/" style={{fontfamily: "roboto"}}>NITC Student Hub</Navbar.Brand>
         {isAuth
          ? <>
              <Nav className="me-auto">
